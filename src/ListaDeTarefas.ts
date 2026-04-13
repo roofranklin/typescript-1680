@@ -1,4 +1,5 @@
 import { Tarefa } from "./Tarefa.js";
+import { TarefaComDataLimite } from "./TarefaComDataLimite.js";
 
 export class ListaDeTarefas {
     private tarefas: Tarefa[] = []
@@ -8,16 +9,33 @@ export class ListaDeTarefas {
         const novaTarefa = new Tarefa(this.proximoId++, descricao);
         this.tarefas.push(novaTarefa);
         console.log(`Tarefa "${descricao}" adicionada com sucesso!`)
+    }
 
+    public adicionarTarefaComDataLimite(descricao: string, dataLimite: Date): void{
+        const novaTarefa = new TarefaComDataLimite(this.proximoId++, descricao, dataLimite);
+        this.tarefas.push(novaTarefa);
+        console.log(`Tarefa com data limite "${descricao}" adicionada com sucesso!`)
     }
 
     public listarTarefas(): void {
         console.log("\n--- Lista de Tarefas ---");
         this.tarefas.forEach(tarefa => {
             const status = tarefa.concluida ? "[X]" : "[ ]"
-            console.log(`${status} ${tarefa.id} - ${tarefa.descricao}`);
+            let linha = `${status} ${tarefa.id} - ${tarefa.descricao}`
+            if(tarefa instanceof TarefaComDataLimite){
+                const dataFormatada = this.formatarData(tarefa.dataLimite);
+                linha += ` Entregar até: ${dataFormatada}`
+            }
+            console.log(linha);
         });
         console.log("-----------------");
+    }
+
+    private formatarData(data: Date): string {
+        const dia = data.getDate().toString().padStart(2, '0');
+        const mes = (data.getMonth() + 1).toString().padStart(2, '0');
+        const ano = data.getFullYear();
+        return `${dia}/${mes}/${ano}`
     }
 
     public marcarTarefaComoConcluida(id: number): void {
