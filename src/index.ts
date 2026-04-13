@@ -7,7 +7,7 @@ minhaLista.adicionarTarefa("Fazer o desafio da aula");
 minhaLista.adicionarTarefa("Preparar o jantar");
 
 minhaLista.marcarTarefaComoConcluida(2);
-minhaLista.marcarTarefaComoConcluida(5);
 
+minhaLista.removerTarefa(1);
 
 minhaLista.listarTarefas();

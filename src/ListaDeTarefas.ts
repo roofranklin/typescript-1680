@@ -33,4 +33,18 @@ export class ListaDeTarefas {
     private encontrarTarefaPorId(id: number): Tarefa | undefined{
         return this.tarefas.find(tarefa => tarefa.id === id);
     }
+
+    private encontrarIndicePorId(id: number): number {
+        return this.tarefas.findIndex(tarefa => tarefa.id === id);
+    }
+
+    public removerTarefa(id: number): void {
+        const indice = this.encontrarIndicePorId(id);
+        if(indice !== -1 ){ // também funciona se a condição for (indice < 0)
+            const tarefaRemovida = this.tarefas.splice(indice, 1)[0]!;
+            console.log(`Tarefa "${tarefaRemovida.descricao}" removida com sucesso!`);
+        } else {
+            console.log("Erro! Tarefa não encontrada.");
+        }
+    }
 }
