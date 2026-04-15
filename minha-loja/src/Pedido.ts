@@ -1,11 +1,18 @@
+import { Cliente } from "./Cliente.js";
+import { ItemPedido } from "./ItemPedido.js";
+
 export class Pedido {
     private _total: number = 0;
+
+    public cliente: Cliente;
+    public itens: ItemPedido[] = [];
 
     constructor(
         public id: number,
         public data: Date,
-        // Futuramente, aqui teremos um atributo do tipo Cliente
+        cliente: Cliente
     ) {
+        this.cliente = cliente;
         console.log(`Pedido #${this.id} criado na data ${this.data.toLocaleDateString()}`);
     }
 
