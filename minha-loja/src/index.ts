@@ -23,10 +23,10 @@ const pedido1 = new Pedido(101, new Date(), cliente1);
 const pedido2 = new Pedido(102, new Date(), cliente2);
 
 // Associando itens aos pedidos
-pedido1.itens.push(item1);
-pedido1.itens.push(item2);
-pedido2.itens.push(item3);
-pedido2.itens.push(item4);
+pedido1.adicionarItem(item1);
+pedido1.adicionarItem(item2);
+pedido2.adicionarItem(item3);
+pedido2.adicionarItem(item4);
 
 // Associar pedidos aos clientes
 cliente1.pedidos.push(pedido1);
@@ -40,7 +40,7 @@ console.log(`Total do pedido 1 (inicial): R$ ${pedido1.total.toFixed(2)}`);
 console.log("\n--- Verificando conexões ---");
 console.log("Cliente 01 com pedidos:");
 console.log(cliente1);
-console.log("\nPedido 01 com cliente e itens:");
-console.log(pedido1);
+console.log("\nResumo do Pedido 01:");
+console.log(pedido1.obterResumo());
 
 console.log("\n--- Sistema Finalizado ---");

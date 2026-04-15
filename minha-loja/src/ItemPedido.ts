@@ -4,4 +4,8 @@ export class ItemPedido {
         public valorUnitario: number,
         public quantidade: number
     ) {}
+
+    public calcularSubTotal(): number {
+        return this.valorUnitario * this.quantidade
+    }
 }
