@@ -9,4 +9,16 @@ export class Cliente {
     ) {
         console.log(`Cliente ${this.nome} criado com sucesso!`);
     }
+
+    public adicionarPedido(pedido: Pedido): void {
+        this.pedidos.push(pedido);   
+    }
+    
+    public calcularTotalGasto(): number {
+        let total = 0;
+        for(const pedido of this.pedidos) {
+            total += pedido.total;
+        }
+        return total;
+    }
 }
