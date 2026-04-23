@@ -1,0 +1,60 @@
+@startuml
+
+class Cliente {
+    - String nome
+    - String email
+    - String cpf
+    + autenticar() : boolean
+ }
+
+class Endereco {
+    - String logradouro
+    - String numero
+    - String complemento
+    - String bairro
+    - String cidade
+    - String cep
+}
+
+class Pedido {
+    - Number id
+    - Date data
+    - String status
+    - Number valorTotal
+    + calcularTotal() : void
+}
+
+class Pagamento {
+    - String metodo
+    - String status
+    - Date dataPagamento
+    + processarPagamento() : boolean
+}
+
+class ItemPedido {
+    - Number quantidade
+    - Number precoUnitario
+    + calcularSubtotal() : Number
+}
+
+class Produto {
+    - Number id
+    - String nome
+    - Number preco
+    - Number estoque
+}
+
+class Categoria {
+    - Number id
+    - String nome
+}
+
+''Relacionamento e Multiplicidade
+Cliente "1" *-- "0..*" Endereco : possui
+Cliente "1" -- "0..*" Pedido : realiza
+Pedido "1" *-- "1..*" ItemPedido : composição
+Pedido "1" -- "1" Pagamento : vinculado a
+ItemPedido "0..*" -- "1" Produto : referência
+Produto "0..*" -- "1" Categoria : pertence a
+
+@enduml
