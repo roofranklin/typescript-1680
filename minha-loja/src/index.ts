@@ -78,4 +78,14 @@ console.log(`\nNome Original: ${clienteValido.nome}`);
 clienteValido.nome = "E";
 console.log(`\nNome depois de tentar alterar: ${clienteValido.nome}`);
 
+console.log("\n--- Testando Serialização ---");
+const jsonPedido = JSON.stringify(pedido1, null, 2);
+console.log(jsonPedido);
+
+console.log("\n--- Testando Desserialização ---");
+const dadosDoServidor = JSON.parse(jsonPedido);
+const pedidoRecriado = Pedido.fromData(dadosDoServidor, cliente1);
+console.log(pedidoRecriado);
+console.log(`Total do pedido recriado: R$ ${pedidoRecriado.total.toFixed(2)}`);
+
 console.log("\n--- Sistema Finalizado ---");

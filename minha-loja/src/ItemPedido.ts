@@ -39,4 +39,17 @@ export class ItemPedido {
     public calcularSubTotal(): number {
         return this._valorUnitario * this._quantidade
     }
+
+    public toJSON() {
+        return {
+            nomeProduto: this.nomeProduto,
+            valorUnitario: this.valorUnitario,
+            quantidade: this.quantidade
+        };
+    }
+
+    public static fromData(data: any): ItemPedido {
+        return new ItemPedido(data.nomeProduto, data.valorUnitario, data.quantidade);
+    }
+
 }
