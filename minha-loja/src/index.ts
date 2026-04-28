@@ -1,6 +1,8 @@
 import { Cliente } from './Cliente.js'
 import { Pedido } from './Pedido.js'
 import { ItemPedido } from './ItemPedido.js';
+import { ProdutoFisico } from './ProdutoFisico.js';
+import { ProdutoDigital } from './ProdutoDigital.js';
 
 console.log("--- Iniciando Sistema de E-Commerce ---");
 
@@ -12,11 +14,17 @@ console.log("\n--- Clientes Cadastrados ---");
 console.log(cliente1);
 console.log(`Email do segundo cliente: ${cliente2.email}`)
 
+// Criando instâncias de Produtos
+const livro = new ProdutoFisico(1, "Livro de TypeScript", 120, "Aprenda TypeScript do básico ao avançado", 500);
+const ebook = new ProdutoDigital(2, "Ebook de JavaScript", 50, "Aprenda JavaScript do básico ao avançado", "https://www.google.com.br");
+const placaVideo = new ProdutoFisico(3, "Placa de Vídeo RTX 3080", 3500, "Placa de vídeo de alta performance para jogos e trabalho", 1500);
+const cursoOnline = new ProdutoDigital(4, "Curso Online de React", 200, "Aprenda React do básico ao avançado", "https://www.google.com.br");
+
 // Criando Instâncias de ItemPedido
-const item1 = new ItemPedido("Placa de Vídeo", 3500, 1);
-const item2 = new ItemPedido("Mouse Gamer", 150, 2);
-const item3 = new ItemPedido("Teclado Mecânico", 600, 1);
-const item4 = new ItemPedido("Monitor 4k", 1200, 1);
+const item1 = new ItemPedido(livro, 2);
+const item2 = new ItemPedido(ebook, 1);
+const item3 = new ItemPedido(placaVideo, 1);
+const item4 = new ItemPedido(cursoOnline, 3);
 
 // Criando instância de Pedidos
 const pedido1 = new Pedido(101, new Date(), cliente1);
@@ -45,7 +53,7 @@ console.log(pedido1.obterResumo());
 
 console.log("\n--- Testando validações do ItemPedido ---");
 console.log("Tentando criar um item com valor negativo");
-const itemInvalido = new ItemPedido("Produto Ruim", -100, 1);
+const itemInvalido = new ItemPedido(livro, -100);
 console.log(itemInvalido); // Veremos a mensagem de erro e o valor não será atribuído
 
 console.log("\nTentando atribuir quantidade negativa a uma item já existente:");
