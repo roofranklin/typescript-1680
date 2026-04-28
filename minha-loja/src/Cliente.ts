@@ -57,4 +57,26 @@ export class Cliente {
         }
         return total;
     }
+
+    public toJSON() {
+        return {
+            id: this.id,
+            nome: this.nome,
+            email: this.email
+        };
+    }
+
+    public static fromJSON(jsonData: string): Cliente {
+        const data = JSON.parse(jsonData);
+        return new Cliente(data.id, data.nome, data.email);
+    }
+
+    public aplicarAtualizacoes(dados: any): void {
+        if (dados.nome) {
+            this.nome = dados.nome;
+        }
+        if (dados.email) {
+            this.email = dados.email;
+        }
+    }
 }

@@ -88,4 +88,21 @@ const pedidoRecriado = Pedido.fromData(dadosDoServidor, cliente1);
 console.log(pedidoRecriado);
 console.log(`Total do pedido recriado: R$ ${pedidoRecriado.total.toFixed(2)}`);
 
+console.log("\n--- Testando Serialização e Desserialização do Cliente ---");
+const clienteOriginal = new Cliente(10, "Joana Silva", "joana@email.com");
+const jsonCliente = JSON.stringify(clienteOriginal.toJSON(), null, 2);
+console.log("Cliente serializado:");
+console.log(jsonCliente);
+
+const clienteRecriado = Cliente.fromJSON(jsonCliente);
+console.log("\nCliente Recriado a partir do JSON");
+console.log(clienteRecriado);
+
+console.log("\n--- Testando atualização parcial e validações ---")
+const atualizacaoParcial = { email: "novoemail@email.com", nome: "J" };
+console.log(`\nAplicando atualizações: ${JSON.stringify(atualizacaoParcial)}`);
+clienteRecriado.aplicarAtualizacoes(atualizacaoParcial);
+console.log("\nCliente após a tentativa de atualização com dados inválidos:");
+console.log(clienteRecriado);
+
 console.log("\n--- Sistema Finalizado ---");
