@@ -1,0 +1,52 @@
+@startuml
+
+abstract class Pessoa {
+    - String nome
+    - String cpf
+    - Date dataNascimento
+    - String email
+    + realizarLogin() : void
+}
+
+class Aluno {
+    - String matricula
+    - String status
+    + matricular(turma : Turma) : void
+    + trancarMatricula() : void
+}
+
+class Professor {
+    - String especialidade
+    + lancarNotas(turma : Turma) : void
+    + alocarTurma(turma: Turma) : void
+}
+
+class Curso {
+    - String nome
+    - Number quantidadeModulos
+    + adicionarDisciplina(disciplina : Disciplina) : void
+}
+
+class Disciplina {
+    - String codigoDisciplina
+    - String nome
+    - Number cargaHoraria
+    + adicionarPreRequisito(preReq : Disciplina) : void
+}
+
+class Turma {
+    - String modulo
+    - Number numero
+    + adicionarAluno(aluno : Aluno) : void
+    + removerAluno(aluno : Aluno) : void
+}
+
+Pessoa <|-- Aluno
+Pessoa <|-- Professor
+
+Curso "1" *-- "1..*" Disciplina : Composição (contém)
+Disciplina "1" -- "1..*" Turma : Associação (possui)
+Professor "1" -- "0..*"  Turma : Associação (leciona)
+Turma "0..*" o-- "1..*" Aluno : Agregação (matrícula)
+
+@enduml

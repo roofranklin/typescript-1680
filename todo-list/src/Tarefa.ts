@@ -3,7 +3,7 @@ export class Tarefa {
     public concluida: boolean;
     public readonly id: number;
 
-    constructor(id: number, descricao: string){
+    constructor(id: number, descricao: string) {
         this.id = id;
         this._descricao = descricao;
         this.concluida = false;
