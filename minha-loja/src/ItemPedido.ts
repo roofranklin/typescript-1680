@@ -10,6 +10,10 @@ export class ItemPedido {
         return this._produto.preco;
     }
 
+    public get nomeProduto(): string {
+        return this._produto.nome;
+    }
+
     public get quantidade(): number {
         return this._quantidade;
     }
