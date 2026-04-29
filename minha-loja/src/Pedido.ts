@@ -1,4 +1,4 @@
-import { Cliente } from "./Cliente.js";
+import { Cliente } from "./ClienteBase.js";
 import { ItemPedido } from "./ItemPedido.js";
 
 export class Pedido {

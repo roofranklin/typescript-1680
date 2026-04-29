@@ -1,4 +1,4 @@
-import { Cliente } from './Cliente.js'
+import { Cliente } from './ClienteBase.js'
 import { Pedido } from './Pedido.js'
 import { ItemPedido } from './ItemPedido.js';
 import { ProdutoFisico } from './ProdutoFisico.js';
